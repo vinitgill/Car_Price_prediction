@@ -50,7 +50,7 @@ with col1:
     owner = st.selectbox("👤 Previous Owners", [0, 1, 2, 3])
 
 with col2:
-    fuel = st.selectbox("⛽ Fuel Type", ["Petrol", "Diesel"])
+    fuel = st.selectbox("⛽ Fuel Type", ["Petrol", "CNG", "Diesel"])
     seller = st.selectbox("🏢 Seller Type", ["Dealer", "Individual"])
     transmission = st.selectbox("⚙ Transmission", ["Manual", "Automatic"])
     age = st.number_input("📅 Car Age (Years)", 0, 30, 5)
