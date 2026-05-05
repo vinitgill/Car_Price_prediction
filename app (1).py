@@ -64,14 +64,34 @@ transmission_manual = 1 if transmission == "Manual" else 0
 # ===== PREDICTION =====
 st.markdown("---")
 
-if st.button("🚀 Predict Price"):
-    features = np.array([[present_price, kms_driven, owner, age,
-                          fuel_diesel, fuel_petrol,
-                          seller_individual, transmission_manual]])
+col_btn, col_result = st.columns([1,2])
 
-    prediction = model.predict(features)
+with col_btn:
+    predict_btn = st.button("🚀 Predict Price")
 
-    if prediction[0] < 0:
-        st.error("❌ Car resale value not valid")
-    else:
-        st.success(f"💸 Estimated Price: ₹ {round(prediction[0], 2)} Lakhs")
+with col_result:
+    if predict_btn:
+        features = np.array([[present_price, kms_driven, owner, age,
+                              fuel_diesel, fuel_petrol,
+                              seller_individual, transmission_manual]])
+
+        prediction = model.predict(features)
+
+        if prediction[0] < 0:
+            st.error("❌ Invalid price")
+        else:
+            st.markdown(f"""
+            <div style="
+                background: linear-gradient(135deg, #11998e, #38ef7d);
+                padding: 25px;
+                border-radius: 15px;
+                text-align: center;
+                color: white;
+                font-size: 24px;
+                font-weight: bold;
+                box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            ">
+                💸 Estimated Price <br><br>
+                ₹ {round(prediction[0], 2)} Lakhs
+            </div>
+            """, unsafe_allow_html=True)
