@@ -35,7 +35,7 @@ h1 {
 """, unsafe_allow_html=True)
 
 # ===== LOAD MODEL =====
-model = pickle.load(open('model/model.pkl', 'rb'))
+model = pickle.load(open('car_price_model.pkl', 'rb'))
 
 # ===== TITLE =====
 st.markdown("<h1>🚗 Car Price Prediction</h1>", unsafe_allow_html=True)
