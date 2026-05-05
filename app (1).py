@@ -64,10 +64,10 @@ transmission_manual = 1 if transmission == "Manual" else 0
 # ===== PREDICTION =====
 st.markdown("---")
 
-col_btn, col_result = st.columns([1,2])
+col_btn, col_result = st.columns([1,1])
 
 with col_btn:
-    predict_btn = st.button("🚀 Predict Price")
+    predict_btn = st.button("🚀 Predict")
 
 with col_result:
     if predict_btn:
@@ -78,20 +78,23 @@ with col_result:
         prediction = model.predict(features)
 
         if prediction[0] < 0:
-            st.error("❌ Invalid price")
+            st.error("Invalid price")
         else:
             st.markdown(f"""
             <div style="
-                background: linear-gradient(135deg, #11998e, #38ef7d);
-                padding: 25px;
-                border-radius: 15px;
-                text-align: center;
-                color: white;
-                font-size: 24px;
-                font-weight: bold;
-                box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+                padding: 10px 0;
+                text-align: left;
+                font-size: 16px;
+                color: #555;
             ">
-                💸 Estimated Price <br><br>
-                ₹ {round(prediction[0], 2)} Lakhs
+                Estimated Price
+            </div>
+
+            <div style="
+                font-size: 32px;
+                font-weight: 700;
+                color: #1f2937;
+            ">
+                ₹ {round(prediction[0], 2)} Lakh
             </div>
             """, unsafe_allow_html=True)
